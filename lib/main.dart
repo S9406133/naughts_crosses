@@ -116,7 +116,7 @@ class _NaughtsCrossesState extends State<NaughtsCrosses> {
     if (won == true){
       heading = 'WINNER!';
     }else if (turnNum == 9){
-      heading = 'Stalemate - Press Restart';
+      heading = 'Stalemate - Press Reset';
     }else if (current == 'X') {
       heading = 'NAUGHTS ( O ) Turn';
     }
@@ -138,7 +138,7 @@ class _NaughtsCrossesState extends State<NaughtsCrosses> {
 
             // Heading
             Padding(
-              padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+              padding: const EdgeInsets.fromLTRB(0, 20, 0, 10),
               child: Text(getHeading(),
                 style: const TextStyle(fontSize: 24),
               ),
@@ -157,7 +157,7 @@ class _NaughtsCrossesState extends State<NaughtsCrosses> {
                   GestureDetector(    // Tile 0
                     onTap: ()
                     {
-                      if (tiles[0].isEmpty) {
+                      if (tiles[0].isEmpty && won==false) {
                         tap(0);
                         setState((){});
                         hasWon(current);
@@ -169,7 +169,7 @@ class _NaughtsCrossesState extends State<NaughtsCrosses> {
                   GestureDetector(    // Tile 1
                     onTap: ()
                     {
-                      if (tiles[1].isEmpty) {
+                      if (tiles[1].isEmpty && won==false) {
                         tap(1);
                         setState((){});
                         hasWon(current);
@@ -181,7 +181,7 @@ class _NaughtsCrossesState extends State<NaughtsCrosses> {
                   GestureDetector(    // Tile 2
                     onTap: ()
                     {
-                      if (tiles[2].isEmpty) {
+                      if (tiles[2].isEmpty && won==false) {
                         tap(2);
                         setState((){});
                         hasWon(current);
@@ -193,7 +193,7 @@ class _NaughtsCrossesState extends State<NaughtsCrosses> {
                   GestureDetector(    // Tile 3
                     onTap: ()
                     {
-                      if (tiles[3].isEmpty) {
+                      if (tiles[3].isEmpty && won==false) {
                         tap(3);
                         setState((){});
                         hasWon(current);
@@ -205,7 +205,7 @@ class _NaughtsCrossesState extends State<NaughtsCrosses> {
                   GestureDetector(    // Tile 4
                     onTap: ()
                     {
-                      if (tiles[4].isEmpty) {
+                      if (tiles[4].isEmpty && won==false) {
                         tap(4);
                         setState((){});
                         hasWon(current);
@@ -217,7 +217,7 @@ class _NaughtsCrossesState extends State<NaughtsCrosses> {
                   GestureDetector(    // Tile 5
                     onTap: ()
                     {
-                      if (tiles[5].isEmpty) {
+                      if (tiles[5].isEmpty && won==false) {
                         tap(5);
                         setState((){});
                         hasWon(current);
@@ -229,7 +229,7 @@ class _NaughtsCrossesState extends State<NaughtsCrosses> {
                   GestureDetector(    // Tile 6
                     onTap: ()
                     {
-                      if (tiles[6].isEmpty) {
+                      if (tiles[6].isEmpty && won==false) {
                         tap(6);
                         setState((){});
                         hasWon(current);
@@ -241,7 +241,7 @@ class _NaughtsCrossesState extends State<NaughtsCrosses> {
                   GestureDetector(    // Tile 7
                     onTap: ()
                     {
-                      if (tiles[7].isEmpty) {
+                      if (tiles[7].isEmpty && won==false) {
                         tap(7);
                         setState((){});
                         hasWon(current);
@@ -253,7 +253,7 @@ class _NaughtsCrossesState extends State<NaughtsCrosses> {
                   GestureDetector(    // Tile 8
                     onTap: ()
                     {
-                      if (tiles[8].isEmpty) {
+                      if (tiles[8].isEmpty && won==false) {
                         tap(8);
                         setState((){});
                         hasWon(current);
@@ -282,7 +282,7 @@ class _NaughtsCrossesState extends State<NaughtsCrosses> {
         ),
       ),
 
-      // Restart Button
+      // Reset Button
       floatingActionButton: FloatingActionButton.extended(
         onPressed: ()
         {
@@ -293,7 +293,7 @@ class _NaughtsCrossesState extends State<NaughtsCrosses> {
               )
           );
         },
-        label: const Text('Restart Game'),
+        label: const Text('Reset Game'),
         backgroundColor: Colors.indigoAccent,
       ),
     );
@@ -327,7 +327,7 @@ class OKDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text('CONGRATULATIONS\n'
-          'Player of $winner has won!',
+          '$winner has won!',
         style: const TextStyle(
           fontSize: 24,
         ),
@@ -337,12 +337,12 @@ class OKDialog extends StatelessWidget {
           onPressed: ()
           {
             Navigator.pop(context, 'OK');
-            Navigator.pop(context);
-            Navigator.push(context,
-                MaterialPageRoute (
-                    builder: (BuildContext context) => const NaughtsCrosses()
-                )
-            );
+            // Navigator.pop(context);
+            // Navigator.push(context,
+            //     MaterialPageRoute (
+            //         builder: (BuildContext context) => const NaughtsCrosses()
+            //     )
+            // );
           },
           child: const Text('OK',
             style: TextStyle(
