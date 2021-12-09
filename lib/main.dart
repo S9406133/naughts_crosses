@@ -62,15 +62,17 @@ class _NaughtsCrossesState extends State<NaughtsCrosses> {
   // Determines if anyone has won
   void hasWon (String data){
 
-    for(int i=0; i<=6; i+=3){   // Across
+    // Across
+    for(int i=0; i<=6; i+=3){
       if ((tiles[i] == data) && (tiles[i+1] == data) && (tiles[i+2] == data)){
         won = true;
         break;
       }
     }
 
+    // Down
     if (won == false) {
-      for (int i = 0; i <= 2; i++) {   // Down
+      for (int i = 0; i <= 2; i++) {
         if ((tiles[i] == data) && (tiles[i + 3] == data) &&
             (tiles[i + 6] == data)) {
           won = true;
@@ -78,6 +80,7 @@ class _NaughtsCrossesState extends State<NaughtsCrosses> {
         }
       }
     }
+
     // Diagonals
     if (won == false) {
       if ((tiles[0] == data) && (tiles[4] == data) && (tiles[8] == data)) {
@@ -334,16 +337,7 @@ class OKDialog extends StatelessWidget {
       ),
       actions: <Widget>[
         TextButton(
-          onPressed: ()
-          {
-            Navigator.pop(context, 'OK');
-            // Navigator.pop(context);
-            // Navigator.push(context,
-            //     MaterialPageRoute (
-            //         builder: (BuildContext context) => const NaughtsCrosses()
-            //     )
-            // );
-          },
+          onPressed: () => Navigator.pop(context, 'OK'),
           child: const Text('OK',
             style: TextStyle(
               fontSize: 20,
