@@ -66,6 +66,7 @@ class _NaughtsCrossesState extends State<NaughtsCrosses> {
     for(int i=0; i<=6; i+=3){
       if ((tiles[i] == data) && (tiles[i+1] == data) && (tiles[i+2] == data)){
         won = true;
+        print(i);
         break;
       }
     }
@@ -76,6 +77,7 @@ class _NaughtsCrossesState extends State<NaughtsCrosses> {
         if ((tiles[i] == data) && (tiles[i + 3] == data) &&
             (tiles[i + 6] == data)) {
           won = true;
+          print(i);
           break;
         }
       }
@@ -126,11 +128,18 @@ class _NaughtsCrossesState extends State<NaughtsCrosses> {
     return heading;
   }
 
+  String getWinText(String letter){
+    int count = letter == 'Crosses' ? xCount : oCount;
+    String text = '$letter has $count win';
+    return count != 1 ? text += 's' : text;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Naughts & Crosses'),
+        title: const Text('Naughts & Crosses',
+          style: TextStyle(letterSpacing: 7)),
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
@@ -271,13 +280,13 @@ class _NaughtsCrossesState extends State<NaughtsCrosses> {
             // Win count text
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-              child: Text('Crosses has $xCount wins',
+              child: Text(getWinText('Crosses'),
                 style: const TextStyle(fontSize: 18),
               ),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-              child: Text('Naughts has $oCount wins',
+              child: Text(getWinText('Naughts'),
                 style: const TextStyle(fontSize: 18),
               ),
             ),
@@ -296,8 +305,14 @@ class _NaughtsCrossesState extends State<NaughtsCrosses> {
               )
           );
         },
-        label: const Text('Reset Game'),
-        backgroundColor: Colors.indigoAccent,
+        label: const Text('Reset Game',
+          style: TextStyle(
+            color: Colors.indigo,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: Colors.white,
+        elevation: 12,
       ),
     );
   }
@@ -312,10 +327,13 @@ class MyTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: tileColor,
       alignment: Alignment.center,
+      decoration: BoxDecoration(
+        color: tileColor,
+        borderRadius: BorderRadius.circular(20),
+      ),
       child: Text(data,
-        style: const TextStyle(fontSize: 100),
+        style: const TextStyle(color: Colors.white ,fontSize: 100),
       ),
     );
   }
